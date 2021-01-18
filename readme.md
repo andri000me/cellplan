@@ -1,4 +1,4 @@
-## Laravel Admin Panel (Current: Laravel 7.*)
+## Laravel 6 Admin Panel
 
 [![StyleCI](https://styleci.io/repos/105789824/shield?style=plastic)](https://github.styleci.io/repos/105789824)
 ![GitHub contributors](https://img.shields.io/github/contributors/FTXInfotech/laravel-adminpanel.svg)
