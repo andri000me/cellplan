@@ -1,7 +1,5 @@
 <?php
 
-/** @var \Laravel\Lumen\Routing\Router $router */
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -16,8 +14,8 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
-$router->get('/product', 'ProductController@index');
-$router->get('/product/{id}', 'ProductController@show');
-$router->post('/product', 'ProductController@create');
-$router->put('/product/{id}', 'ProductController@update');
-$router->delete('/product/{id}', 'ProductController@delete');
+$router->get('/kec', 'KecamatanController@index');
+$router->get('/kec/{id}', 'KecamatanController@show');
+$router->post('/kec', 'KecamatanController@create');
+$router->put('/kec/{id}', 'KecamatanController@update');
+$router->delete('/kec/{id}', 'KecamatanController@delete');
