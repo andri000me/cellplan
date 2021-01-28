@@ -46,6 +46,8 @@ class image_CRUD {
 	protected $lang_strings = array();
 	protected $default_language_path = 'assets/image_crud/languages';
 
+	protected $where = array();
+
 	/**
 	 *
 	 * @var Image_moo
@@ -60,6 +62,12 @@ class image_CRUD {
 	{
 		$this->table_name = $table_name;
 
+		return $this;
+	}
+
+	function where($key, $value = NULL, $escape = TRUE)
+	{
+		$this->where[] = array($key,$value,$escape);
 		return $this;
 	}
 
@@ -372,6 +380,11 @@ class image_CRUD {
     	{
     		$this->ci->db->order_by($this->priority_field);
     	}
+    	if(!empty($this->where)) {
+			foreach($this->where as $where) {
+				$this->ci->db->where($where[0],$where[1],$where[2]);
+			}
+    	}
     	if(!empty($relation_value))
     	{
     		$this->ci->db->where($this->relation_field, $relation_value);
@@ -380,18 +393,27 @@ class image_CRUD {
 
     	$thumbnail_url = !empty($this->thumbnail_path) ? $this->thumbnail_path : $this->image_path;
 
+    	$final_results = array();
     	foreach($results as $num => $row)
     	{
-			if (!file_exists($this->image_path.'/'.$this->thumbnail_prefix.$row->{$this->url_field})) {
-				$this->_create_thumbnail($this->image_path.'/'.$row->{$this->url_field}, $this->image_path.'/'.$this->thumbnail_prefix.$row->{$this->url_field});
+    		$image_filename = $row->{$this->url_field};
+
+    		if (empty($image_filename)) {
+    			continue;
+    		}
+
+			if (!file_exists($this->image_path . '/' . $this->thumbnail_prefix . $image_filename)) {
+				$this->_create_thumbnail($this->image_path.'/'.$image_filename, $this->image_path.'/'.$this->thumbnail_prefix . $image_filename);
 			}
 
-    		$results[$num]->image_url = base_url().$this->image_path.'/'.$row->{$this->url_field};
-    		$results[$num]->thumbnail_url = base_url().$this->image_path.'/'.$this->thumbnail_prefix.$row->{$this->url_field};
+    		$results[$num]->image_url = base_url() . $this->image_path . '/' . $image_filename;
+    		$results[$num]->thumbnail_url = base_url() . $this->image_path . '/' . $this->thumbnail_prefix . $image_filename;
     		$results[$num]->delete_url = $this->_get_delete_url($row->{$this->primary_key});
+
+    		$final_results[] = $results[$num];
     	}
 
-    	return $results;
+    	return $final_results;
     }
 
 	protected function _convert_foreign_characters($str_i)
