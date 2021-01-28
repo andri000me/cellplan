@@ -8,8 +8,9 @@ application/logs/*
 !application/logs/index.html
 !application/logs/.htaccess
 
-assets/uploads/*
-!assets/uploads/index.html
-!assets/index.html
+public/uploads/*
+!public/uploads/index.html
+!public/index.html
+
 /vendor
-/node_modules
+/node_modules/

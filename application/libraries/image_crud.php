@@ -44,7 +44,7 @@ class image_CRUD {
 
 	protected $language = null;
 	protected $lang_strings = array();
-	protected $default_language_path = 'assets/image_crud/languages';
+	protected $default_language_path = 'public/image_crud/languages';
 
 	protected $where = array();
 
@@ -182,7 +182,7 @@ class image_CRUD {
 		$ext = pathinfo($view, PATHINFO_EXTENSION);
 		$file = ($ext == '') ? $view.'.php' : $view;
 
-		$view_file = 'assets/image_crud/views/';
+		$view_file = 'public/image_crud/views/';
 
 		if (file_exists($view_file.$file))
 		{
@@ -418,7 +418,7 @@ class image_CRUD {
 
 	protected function _convert_foreign_characters($str_i)
 	{
-		include('assets/image_crud/config/translit_chars.php');
+		include('public/image_crud/config/translit_chars.php');
 		if ( ! isset($translit_characters))
 		{
 			return $str_i;

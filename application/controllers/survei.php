@@ -134,7 +134,7 @@ class Survei extends CI_Controller {
 		$image_crud->set_title_field('tanggal');
 		$image_crud->set_table('survei_foto')
 		->set_ordering_field('priority')
-		->set_image_path('assets/uploads');
+		->set_image_path('public/uploads');
 			
 		$output = $image_crud->render();
 	
