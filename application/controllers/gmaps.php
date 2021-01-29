@@ -7,12 +7,6 @@ class GMaps extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->library(array('form_validation','session','googlemaps'));
 		$this->load->model(array('kel_model','tower_model','member_model'));
-		$this->pegawai_id = $this->session->userdata('pegawai_id');
-		$this->pegawai_nama = $this->session->userdata('pegawai_nama');
-		if(!$this->pegawai_id)
-		{
-			redirect('member');
-		}
 
 		$this->_init();
 		$this->_maps();
