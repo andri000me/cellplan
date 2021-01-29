@@ -35,7 +35,7 @@ class CI_DB_driver {
 	var $password;
 	var $hostname;
 	var $database;
-	var $dbdriver		= 'mysqli';
+	var $dbdriver		= 'mysql';
 	var $dbprefix		= '';
 	var $char_set		= 'utf8';
 	var $dbcollat		= 'utf8_general_ci';
@@ -323,12 +323,12 @@ class CI_DB_driver {
 				// Log and display errors
 				log_message('error', 'Query error: '.$error_msg);
 				return $this->display_error(
-					array(
-						'Error Number: '.$error_no,
-						$error_msg,
-						$sql
-					)
-				);
+										array(
+												'Error Number: '.$error_no,
+												$error_msg,
+												$sql
+											)
+										);
 			}
 
 			return FALSE;

@@ -1,0 +1,1 @@
+<?= anchor('/Map/all_points', 'All Points'); ?>

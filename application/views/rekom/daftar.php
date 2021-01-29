@@ -23,7 +23,7 @@
                         <td><?php echo date('d M Y', strtotime($t->SUREK_TANGGAL)) ?></td>
                         <td><?php echo $t->SUREK_STATUS; ?></td>
                         <td><?php echo $t->SUREK_KETERANGAN; ?></td>
-                        <td align='center'><a href="<?php echo site_url()  ?>/rekom/cetak_pdf"><img src='<?php echo base_url()  ?>/images/print.ico'/></a></td>
+                        <td align='center'><a href="<?php echo site_url()  ?>/rekom/cetak_pdf">Cetak</a></td>
                     </tr>
                 </tbody>
             <?php $a++; } ?>

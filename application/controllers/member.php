@@ -6,13 +6,15 @@ class member extends CI_Controller {
         parent::__construct();
          $this->load->library('session');
             $this->load->helper('url');
-            $this->load->library('form_validation');
-            $this->load->model('desa_model');
+            $this->load->library(array('form_validation'));
+            $this->load->model('kel_model');
             $this->load->model('member_model');
             $this->load->model('tower_model');
             
             $this->pegawai_id = $this->session->userdata('pegawai_id');
             $this->pegawai_nama = $this->session->userdata('pegawai_nama');
+
+            $this->_init();
     }
     
     public function index()
@@ -33,38 +35,31 @@ class member extends CI_Controller {
     
     public function login()
     {
-            $user = $this->input->post('user');
-            $pass = $this->input->post('pass');
+        $user = $this->input->post('user');
+        $pass = $this->input->post('pass');
 
-            $this->form_validation->set_message('required', "Isian %s tidak boleh kosong");
-
-            $this->form_validation->set_rules('user', 'Username', 'trim|required');
-            $this->form_validation->set_rules('pass', 'Password', 'trim|required');
-
-            if ($this->form_validation->run() == FALSE)
+        $this->form_validation->set_message('required', "Isian %s tidak boleh kosong");
+        $this->form_validation->set_rules('user', 'Username', 'trim|required');
+        $this->form_validation->set_rules('pass', 'Password', 'trim|required');
+        if ($this->form_validation->run() == FALSE)
+        {
+            $data["ket"] = ""; 
+            $this->load->section('navbar', 'components/navbar');
+            $this->load->view('member/login', $data);
+        }else {
+            $data_member = $this->member_model->cek_login($user, $pass);
+            if($data_member)
             {
-                
-                $data["ket"] = ""; 
-                $this->load->view('template/header');
+                $this->session->set_userdata('pegawai_id',$data_member->PEGAWAI_ID);
+                $this->session->set_userdata('pegawai_nama',$data_member->PEGAWAI_NAMA);
+                $data["ket"] = "sukses login $data_member->PEGAWAI_NAMA";
+                redirect('grid');
+            } else {
+                $data["ket"] = "username password tidak valid";
+                $this->load->section('navbar', 'components/navbar');
                 $this->load->view('member/login', $data);
-                $this->load->view('template/footer');
-            }else
-		{
-                    $data_member = $this->member_model->cek_login($user, $pass);
-                    
-                    if($data_member){
-                        $this->session->set_userdata('pegawai_id',$data_member->PEGAWAI_ID);
-                        $this->session->set_userdata('pegawai_nama',$data_member->PEGAWAI_NAMA);
-                        $data["ket"] = "sukses login $data_member->PEGAWAI_NAMA";
-                        redirect('grid');
-                    }
-                    else {
-                        $data["ket"] = "username password tidak valid";
-                        $this->load->view('template/header');
-                        $this->load->view('member/login', $data);
-                        $this->load->view('template/footer');
-                    }
-                }
+            }
+        }
     
     }
     
@@ -126,9 +121,13 @@ class member extends CI_Controller {
         
     }*/
     
-    
-    
-        
+    private function _init()
+    {
+        $this->output->set_title('Admin SIMDARATEL');
+        $this->output->set_template('admin');
+        $this->load->css('public/css/app.css');
+        $this->load->js('public/js/app.js');
+    } 
 }
 
 /* End of file welcome.php */

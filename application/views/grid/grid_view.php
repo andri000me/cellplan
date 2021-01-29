@@ -8,9 +8,7 @@
       document.write(script);
 </script>
 <input type="hidden" id="base_url" value="<?php echo base_url(); ?>" />
-<input type="hidden" id="site_url" value="<?php echo site_url(); ?>" />      
-
-
-        <div id="map_canvas" style="width:100%; height:500px;border-radius: 5px 5px 5px 5px;"></div>
-        </div>
+<input type="hidden" id="site_url" value="<?php echo site_url(); ?>" />
+<div id="map_canvas" style="width:100%; height:500px;border-radius: 5px 5px 5px 5px;"></div>
+</div>
 </div>    

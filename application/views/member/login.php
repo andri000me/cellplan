@@ -1,61 +1,40 @@
-<div class="backbanner"></div>
-<div class="page">
-    <div class="page_login" >
-        <h2>Silahkan Login</h2>
-        <table>
-            <?php echo form_open('member/login'); ?> 
-                <tr>
-                    <td id="text_">NIP</td>
-                    <td><input id="form_inp" type="text" name="user" value="" /></td>
-                </tr>
-                <tr>
-                    <td id="text_">Password</td>
-                    <td><input id="form_inp" type="password" name="pass" value="" /></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><input id="form_but" type="submit" value="Login"/></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><?php echo validation_errors(); ?><?php echo $ket; ?></td>
-                </tr>
-            <?php echo form_close(); ?> 
-        </table>
-</div>
-</div>
+<div class="container pt-5">
+    <div class="row justify-content-center py-5">
+        <div class="col-sm-5">
+            <div class="card">
+                <div class="card-header">Login</div>
 
-<style>
-    
-    h2{
-        text-align: center;
-        padding-top: 30px;
-    }
-    
-    table{
-        margin-left: 50px;
-    } 
-    
-    table tr td{
-        height: 50px;
-    }
-    
-    #text_{
-        width: 150px;
-    }
-    
-    #form_inp {
-        width: 230px;
-        height: 25px;
-        font-size: 18px;
-    }
-    
-    #form_but{
-        width: 100px;
-        padding: 5px;
-        padding-left: 10px;
-        padding-right: 10px;
-        cursor: pointer;
-    }
-    
-</style>
+                <div class="card-body">
+                    <?php echo form_open('member/login'); ?>
+
+                        <div class="form-group row">
+                            <label for="nip" class="col-md-4 col-form-label text-md-right">NIP</label>
+
+                            <div class="col">
+                                <input id="nip" type="text" class="form-control" name="user" required autocomplete="user" autofocus>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="pass" class="col-md-4 col-form-label text-md-right">Password</label>
+
+                            <div class="col">
+                                <input id="pass" type="password" class="form-control" name="pass" required autocomplete="current-password">
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-0">
+                            <a href="<?php echo site_url() ?>/gmaps" class="nav-link center">Zona Cellplan Direkomendasikan >></a>
+                            <div class="col-md-8 offset-sm-4">
+                                <button type="submit" class="btn btn-primary">
+                                    Login
+                                </button>
+                            </div>
+                        </div>
+                        <?php echo validation_errors(); ?><?php echo $ket; ?>
+                    <?php echo form_close(); ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

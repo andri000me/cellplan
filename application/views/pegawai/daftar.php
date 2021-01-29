@@ -34,8 +34,8 @@ function confirmDelete() {
                         <td><?php echo $t->PEGAWAI_NO_TELP; ?></td>
                         <td><?php echo date('d M Y', strtotime($t->PEGAWAI_TTL)) ?></td>
                         <td><?php echo $t->PEGAWAI_JABATAN; ?></td>
-                        <td align='center'><a href="<?php echo site_url()?>/pegawai/edit/<?php echo $t->PEGAWAI_ID; ?>"><img src='<?php echo base_url()  ?>/images/edit.ico'/></a></td>
-                        <td align='center'><a href="<?php echo site_url()  ?>/pegawai/delete/<?php echo $t->PEGAWAI_ID; ?>" onclick="confirmDelete();"><img src='<?php echo base_url()  ?>/images/delete.ico'/></a></td>
+                        <td align='center'><a href="<?php echo site_url()?>/pegawai/edit/<?php echo $t->PEGAWAI_ID; ?>">Edit</a></td>
+                        <td align='center'><a href="<?php echo site_url()  ?>/pegawai/delete/<?php echo $t->PEGAWAI_ID; ?>" onclick="confirmDelete();">Delete</a></td>
                     </tr>
                 </tbody>
             <?php  } ?>

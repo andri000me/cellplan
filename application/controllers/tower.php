@@ -7,7 +7,7 @@ class tower extends CI_Controller {
          $this->load->library('session');
             $this->load->helper('url');
             $this->load->library('form_validation');
-            $this->load->model('desa_model');
+            $this->load->model('kel_model');
             $this->load->model('tower_model');
             $this->load->model('member_model');
             $this->pegawai_id = $this->session->userdata('pegawai_id');
